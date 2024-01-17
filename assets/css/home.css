@@ -1,0 +1,67 @@
+body{
+    color:rgb(105,110,117)
+}
+span{
+    color:rgb(228,228,228)
+}
+
+.btn-secondary{
+    background-color: white;
+    color: grey;
+    border:none
+}
+
+.dropdown button{
+    text-align: left;
+    padding: 0;
+    width: 100%;
+}
+
+
+.sections{
+    border: 1px solid black;
+    padding: 10px 0px 0px 10px;
+}
+
+.sections input{
+    border: none;
+    width: 100%;
+}
+#operations{
+    padding: 20px;
+    padding-bottom: 20px;
+    /* border-bottom: 1px solid black; */
+}
+#operations button{
+  /* padding:20px; */
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 20px;
+  border:none;
+  color:white;
+  
+}
+#addBtn{
+    background-color: rgb(68,68,69);
+}
+#deleteBtn{
+    background-color:rgb(238,53,31) ;
+}
+
+.tasks button{
+   border: none;
+   padding: 15px;
+   width: 150px;
+   /* background-color: green; */
+   color: white;
+}
+
+.tasksSection{
+    border-top: 1px solid black;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.dropdown-menu{
+    color: black;
+}

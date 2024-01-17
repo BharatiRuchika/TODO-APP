@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   <!-- external css is added here -->
+    <link rel="stylesheet" type="text/css" href="/css/home.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
+</head>
+
+<body>
+    <!-- extenal js is added here -->
+    <script src="/js/home.js"></script>
+<h1 style="text-align: center;">ToDo App</h1>
+<div class="container">
+    <form method="POST" action="/task/createTask">
+        <div class="row">
+            <div class="col-12 sections">
+                <h6>DESCRIPTION</h6>
+                <input type="text" name="taskDesc" placeholder="What do you need to do?" required/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 sections">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle dropdown-toggle-split" type="button" data-toggle="dropdown" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
+                        <h6>CATEGORY</h6>
+                        <span>Choose a category</span>
+                    </button>
+
+                    <!-- category selection dropdown is here -->
+                    <div class="dropdown-menu">
+                        <li><a class="dropdown-item" name="category" data-value="personal">Personal</a></li>
+                        <li><a class="dropdown-item" name="category" data-value="cleaning" href="#">Cleaning</a></li>
+                        <li><a class="dropdown-item" name="category" data-value="work" href="#">Work</a></li>
+                        <li><a class="dropdown-item" name="category" data-value="school" href="#">School</a></li>
+                        <li><a class="dropdown-item" name="category" data-value="other" href="#">Other</a></li>
+                    </div>
+                    <input type="hidden" id="selectedOption" name="category">
+                </div>
+            </div>
+
+            <!-- task deadline date should be selected here  -->
+            <div class="col-6 sections">
+                <div class="date">
+                    <h6>DUE DATE</h6>
+                    <input type="date" placeholder="DUE DATE" name="date">
+                </div>
+            </div>
+        </div>
+
+        <!-- Add task button -->
+        <div class="row" id="operations">
+            <div class="col-3 offset-3">
+               <button id="addBtn" type="submit"><i class="fa fa-plus"></i>ADD TASK</button>
+            </div>
+
+            <!-- delete Task button -->
+            <div class="col-3">
+                <button id="deleteBtn" type="button" onclick="deleteTask()"><i class="fa fa-trash"></i>DELETE TASKS</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- Tasks table starts from here -->
+
+    <h3>Tasks <%= tasks.length %></h3>
+    <div class="row tasks">
+        <div class="col-12">
+            <% for (i of tasks){%>
+            <div class="row tasksSection">
+                <div class="col-1">
+                    <input type="checkbox" id='<%=i._id %>' onclick="checkboxClicked(event)"/>
+                </div>
+                <div class="col-4 currentRow" id="row-<%= i._id %>">
+                    <h6><%=i.taskDesc %></h6>
+                    <i class="fa fa-calendar"></i>
+                    <span><%= i.date=='No Deadline' ? 'No Dealine':new Date(i.date).toLocaleDateString('en-IN', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                      }) %></span>
+                   
+                    <p id="donePara-<%=i._id %>" style="display:none">Great!</p>
+                </div>
+                <div class="col-2 offset-5">
+                    <% %>
+                    <button style="background-color: <%= i.category === 'school' ? 'green' : i.category === 'work' ? 'violet' : i.category === 'personal' ? 'red' : i.category == 'cleaning'?'black' :'maroon'  %>">
+                    <%=i.category %>
+                </button> 
+                </div>
+            </div>
+            <%}%>
+        </div>
+    </div>
+</div>
+
+<!-- all extrnal js links   added here -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script
+    src="https://kit.fontawesome.com/2d9b67a497.js"
+    crossorigin="anonymous"
+  ></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+  </body>
+
+</body>
+</html>
